@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uma Prasanna | Portfolio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary-color: #4a6cf7;
+        --secondary-color: #6c757d;
+        --accent-color: #ff6b6b;
+        --background-color: #f8f9fa;
+        --text-color: #333;
+        --light-text: #f8f9fa;
+        --dark-bg: #212529;
+        --card-bg: #fff;
+      }
+
+      body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      nav {
+        background-color: var(--primary-color);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-menu li {
+        margin-left: 1.5rem;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a:hover {
+        color: var(--accent-color);
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--accent-color);
+        transition: width 0.3s;
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px 0;
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #343a40 100%
+        );
+        color: white;
+        padding: 8rem 2rem 5rem;
+        text-align: center;
+        margin-top: 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        margin-bottom: 1.5rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .role {
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+      }
+
+      section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 2.5rem;
+        position: relative;
+      }
+
+      .section-title h2 {
+        display: inline-block;
+        font-size: 2rem;
+        padding-bottom: 0.5rem;
+        color: var(--primary-color);
+      }
+
+      .section-title h2::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-color);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .about-text {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .about-info {
+        flex: 1;
+        min-width: 300px;
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-item {
+        margin-bottom: 1rem;
+      }
+
+      .info-item span {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .skill-category {
+        flex: 1;
+        min-width: 250px;
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-category h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .skill-list {
+        list-style: none;
+      }
+
+      .skill-list li {
+        padding: 0.5rem 0;
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .skill-list li::before {
+        content: "•";
+        color: var(--primary-color);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .education-card {
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .education-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .education-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .education-card p {
+        margin-bottom: 0.5rem;
+      }
+
+      .education-year {
+        font-style: italic;
+        color: var(--secondary-color);
+      }
+
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .contact-info {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-item i {
+        margin-right: 1rem;
+        color: var(--primary-color);
+      }
+
+      .contact-form {
+        flex: 1;
+        min-width: 300px;
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+      }
+
+      .submit-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: var(--accent-color);
+      }
+
+      footer {
+        background-color: var(--dark-bg);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 2rem;
+      }
+      @media (max-width: 768px) {
+        .hamburger {
+          display: block;
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background-color: var(--primary-color);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+          padding: 1rem 0;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .nav-menu li {
+          margin: 1rem 0;
+        }
+
+        .nav-menu a::after {
+          display: none;
+        }
+        .section-content {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .section-content {
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+      .download-button {
+        background: #17a2b8;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        margin-left: 15px;
+        border-radius: 5px;
+        transition: background 0.3s;
+        font-weight: bold;
+      }
+
+      .download-button:hover {
+        background: #138496;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header>
+      <div class="header-content">
+        <img src="profile.jpg" alt="Uma Prasanna" class="profile-picture" />
+        <h1>UMA PRASANNA</h1>
+        <p class="role">SOFTWARE DEVELOPER</p>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Software Developer in designing, developing, and maintaining
+            software applications. Proficient in various programming languages
+            including JavaScript, Python, Java, and experienced with front-end
+            and back-end development.
+          </p>
+          <p>
+            Adept at solving complex problems and collaborating with
+            cross-functional teams to deliver high-quality products. Passionate
+            about continuously learning new technologies to stay at the
+            forefront of the industry.
+          </p>
+          <p>
+            I am a student of Hindustan College of Arts & Science and looking
+            for my first work as a Software Developer.
+          </p>
+        </div>
+        <div class="about-info">
+          <div class="info-item"><span>Phone:</span> 9629499104</div>
+          <div class="info-item">
+            <span>Email:</span> akrasanna505@gmail.com
+          </div>
+          <div class="info-item">
+            <span>Address:</span> 2/54 VOC Street, kannicheri puthur,
+            Virudhunagar(District)-626204
+          </div>
+          <div class="info-item"><span>Experience:</span> Fresher</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Soft Skills</h3>
+          <ul class="skill-list">
+            <li>Creativity</li>
+            <li>Digital Marketing</li>
+            <li>Negotiation</li>
+            <li>Critical Thinking</li>
+            <li>Leadership</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Computer Skills</h3>
+          <ul class="skill-list">
+            <li>Python</li>
+            <li>Java</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <ul class="skill-list">
+            <li>English</li>
+            <li>Tamil</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-title">
+        <h2>Education</h2>
+      </div>
+      <div class="education-card">
+        <h3>Bachelor of Computer Application</h3>
+        <p>Madras University</p>
+        <p>Hindustan College of Arts & Science</p>
+        <p class="education-year">2023 - 2026</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact Me</h2>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i>📱</i>
+            <div>
+              <h3>Phone</h3>
+              <p>9629499104</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i>✉️</i>
+            <div>
+              <h3>Email</h3>
+              <p>akrasanna505@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i>📍</i>
+            <div>
+              <h3>Address</h3>
+              <p>
+                2/54 VOC Street, kannicheri puthur,
+                Virudhunagar(District)-626204
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="resume" class="section-content">
+      <h2>Resume</h2>
+      <a href="CV Resume.pdf" target="_blank" class="download-button"
+        >Download CV</a
+      >
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Uma Prasanna | Software Developer</p>
+    </footer>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
